@@ -5,7 +5,7 @@ import './App.css';
 // import Login from '../Login/Login';
 // import MyStuff from '../MyStuff/MyStuff';
 import Navbar from '../Navbar/Navbar';
-// import Register from '../Register/Register';
+import Register from '../Register/Register';
 import AllStuff from '../AllStuff/AllStuff';
 // import SingleStuff from '../SingleStuff/SingleStuff';
 import Home from '../Home/Home';
@@ -15,6 +15,22 @@ const PrivateRoute = ({component: Component, authed, ...rest}) => {
     <Route {...rest}
       render ={props =>
         authed === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{pathname: '/login', state: {from: props.location}}}
+          />
+        )
+      }
+    />
+  );
+};
+
+const PublicRoute = ({component: Component, authed, ...rest}) => {
+  return (
+    <Route {...rest}
+      render ={props =>
+        authed === false ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -44,6 +60,11 @@ class App extends React.Component {
                   path="/allstuff"
                   authed={this.state.authed}
                   component={AllStuff}
+                />
+                <PublicRoute
+                  path="/register"
+                  authed={this.state.authed}
+                  component={Register}
                 />
               </Switch>
             </div>
