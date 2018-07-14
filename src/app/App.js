@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 
-// import Login from '../Login/Login';
+import Login from '../Login/Login';
 // import MyStuff from '../MyStuff/MyStuff';
 import Navbar from '../Navbar/Navbar';
 import Register from '../Register/Register';
@@ -68,6 +68,11 @@ class App extends React.Component {
                   path="/register"
                   authed={this.state.authed}
                   component={Register}
+                />
+                <PublicRoute
+                  path="/login"
+                  authed={this.state.authed}
+                  component={Login}
                 />
               </Switch>
             </div>
