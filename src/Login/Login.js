@@ -12,7 +12,7 @@ class Login extends React.Component {
     },
   };
 
-  loginClickEvent = e => {
+  loginClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
     authRequests
@@ -21,7 +21,7 @@ class Login extends React.Component {
         this.props.history.push('./myitems');
       })
       .catch((err) => {
-        console.error('error in registerClickEvent', err);
+        console.error('error in loginEvent', err);
       });
   };
 
@@ -85,8 +85,7 @@ class Login extends React.Component {
                 <button
                   type="submit"
                   className="btn btn-default col-xs-12"
-                  onClick={this.loginClickEvent}
-                >
+                  onClick={this.loginClickEvent}>
                   Login
                 </button>
               </div>
